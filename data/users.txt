@@ -1,0 +1,1 @@
+{"username": "Jose", "password": "Papuuu1", "progress": {"games": 0, "wins": 0}, "tutoriales_hechos": ["inicio_juego", "ingreso_intento"]}
