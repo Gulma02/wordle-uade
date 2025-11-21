@@ -14,7 +14,6 @@ def ensure_data_files() -> None:
             f.write("")
 
 def read_users() -> List[Dict[str, Any]]:
-    """Read JSONL users from users.txt."""
     ensure_data_files()
     users: List[Dict[str, Any]] = []
     with open(USERS_FILE, "r", encoding="utf-8") as f:
@@ -25,12 +24,10 @@ def read_users() -> List[Dict[str, Any]]:
             try:
                 users.append(json.loads(line))
             except json.JSONDecodeError:
-                # Skip malformed lines but keep file resilient
                 continue
     return users
 
 def write_users(users: List[Dict[str, Any]]) -> None:
-    """Persist JSONL users to users.txt safely."""
     ensure_data_files()
     tmp_path = USERS_FILE + ".tmp"
     with open(tmp_path, "w", encoding="utf-8") as f:

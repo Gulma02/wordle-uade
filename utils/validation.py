@@ -7,6 +7,5 @@ PASSWORD_RE = re.compile(r"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!@#$%^&*()_+\-=\[\]{}
 def validar_username(nombre: str) -> bool:
     return bool(USERNAME_RE.match(nombre))
 
-def validar_password(pw: str) -> bool:
-    # At least 4 chars, contain letters and numbers (simple check)
-    return bool(PASSWORD_RE.match(pw))
+def validar_password(password: str) -> bool:
+    return bool(PASSWORD_RE.match(password))

@@ -1,7 +1,7 @@
 
 import os
 import unittest
-from utils.files import DATA_DIR, USERS_FILE, write_users
+from utils.files import DATA_DIR, USERS_FILE
 from auth.users import registrar_usuario, login
 
 class TestAuth(unittest.TestCase):

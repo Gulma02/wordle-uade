@@ -29,7 +29,6 @@ def elegir_palabra() -> str:
     return random.choice(candidatas)
 
 def evaluar_intento(secreta: str, intento: str) -> List[str]:
-    """Devuelve una lista de marcas por letra: '✓', '~', 'x'"""
     intento = _normalizar_palabra(intento)
     if len(intento) != LARGO:
         raise GameError(f"El intento debe tener {LARGO} letras.")
@@ -88,7 +87,6 @@ def jugar(user: Dict) -> None:
     mostrar_estadisticas(user, intentos)
 
 def mostrar_estadisticas(user: Dict, intentos: List[str]) -> None:
-    from game.tutorials import mostrar_tutorial_si_corresponde
     mostrar_tutorial_si_corresponde(user, "estadisticas")
     juegos = user["progress"]["games"]
     wins = user["progress"]["wins"]
