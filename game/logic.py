@@ -13,9 +13,6 @@ PALABRAS: Tuple[str, ...] = (
 
 LARGO = 5  # Forzamos 5 para tutorial, usaremos slicing si la palabra no lo cumple
 
-class GameError(Exception):
-    pass
-
 def _normalizar_palabra(p: str) -> str:
     # Ejemplo de operaciones con cadenas y slicing (Hito 1)
     p = p.lower().strip()
@@ -25,13 +22,13 @@ def elegir_palabra() -> str:
     # elegimos palabras que tengan al menos LARGO; usamos filter (Hito 2)
     candidatas = list(filter(lambda w: len(w) >= LARGO, PALABRAS))
     if not candidatas:
-        raise GameError("No hay palabras válidas para jugar.")
+        raise ValueError("No hay palabras válidas para jugar.")
     return random.choice(candidatas)
 
 def evaluar_intento(secreta: str, intento: str) -> List[str]:
     intento = _normalizar_palabra(intento)
     if len(intento) != LARGO:
-        raise GameError(f"El intento debe tener {LARGO} letras.")
+        raise ValueError(f"El intento debe tener {LARGO} letras.")
     marcas: List[str] = []
     # Usamos conjuntos (Hito 1) para validar letras presentes
     presentes = set(secreta)
@@ -73,7 +70,7 @@ def jugar(user: Dict) -> None:
         intento = input(f"Intento {intento_num}/{intentos_max}: ").strip().lower()
         try:
             marcas = evaluar_intento(secreta, intento)
-        except GameError as e:
+        except ValueError as e:
             print(f"Error: {e}")
             continue
         imprimir_feedback(intento[:LARGO], marcas)
